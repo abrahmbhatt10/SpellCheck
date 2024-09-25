@@ -32,11 +32,11 @@ public class SpellCheck {
         https://stackoverflow.com/questions/2000237/in-java-which-is-the-most-recommended-class-for-a-dictionary-data-structure
          */
         Map<String, Integer> sortedDict = new TreeMap<>();
-        Stack<String> misspelledWords = new Stack<String>();
+        ArrayList<String> misspelledWords = new ArrayList<String>();
         for(int i = 0; i < dictionary.length; i++){
             sortedDict.put(dictionary[i], i);
         }
-        for(int i = text.length - 1; i >= 0; i--){
+        for(int i = 0; i < text.length; i++){
             if ((!sortedDict.containsKey(text[i])) && (!misspelledWords.contains(text[i]))) {
                 misspelledWords.add(text[i]);
             }
@@ -47,8 +47,9 @@ public class SpellCheck {
         https://www.baeldung.com/java-iterate-set
          */
         int j = 0;
-        while(!misspelledWords.isEmpty()){
-            misspellArr[j] = misspelledWords.pop();
+        for(String a : misspelledWords){
+            misspellArr[j] = misspelledWords.get(j);
+            System.out.println(misspellArr[j]);
             j++;
         }
         return misspellArr;

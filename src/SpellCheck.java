@@ -32,12 +32,14 @@ public class SpellCheck {
         https://stackoverflow.com/questions/2000237/in-java-which-is-the-most-recommended-class-for-a-dictionary-data-structure
          */
         Map<String, Integer> sortedDict = new TreeMap<>();
+        Map<String, Integer> misspelledWordsMap = new TreeMap<>();
         ArrayList<String> misspelledWords = new ArrayList<String>();
         for(int i = 0; i < dictionary.length; i++){
             sortedDict.put(dictionary[i], i);
         }
         for(int i = 0; i < text.length; i++){
-            if ((!sortedDict.containsKey(text[i])) && (!misspelledWords.contains(text[i]))) {
+            if ((!sortedDict.containsKey(text[i])) && (!misspelledWordsMap.containsKey(text[i]))) {
+                misspelledWordsMap.put(text[i],i);
                 misspelledWords.add(text[i]);
             }
         }

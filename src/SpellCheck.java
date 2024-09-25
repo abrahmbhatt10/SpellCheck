@@ -49,7 +49,6 @@ public class SpellCheck {
         int j = 0;
         for(String a : misspelledWords){
             misspellArr[j] = misspelledWords.get(j);
-            System.out.println(misspellArr[j]);
             j++;
         }
         return misspellArr;

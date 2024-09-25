@@ -60,7 +60,7 @@ public class SpellCheck {
         }
         String[] misspellArr = new String[misspelledWords.size()];
         /*
-        Moves everything from the arraylist into the misspellarr array
+        Moves everything from the arraylist into the misSpellArr array
         and returns it.
          */
         int j = 0;

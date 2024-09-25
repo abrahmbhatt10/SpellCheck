@@ -34,9 +34,24 @@ public class SpellCheck {
         Map<String, Integer> sortedDict = new TreeMap<>();
         Map<String, Integer> misspelledWordsMap = new TreeMap<>();
         ArrayList<String> misspelledWords = new ArrayList<String>();
+        /*
+            Sorts the below dictionary in alphabetical order in a map,
+            so when I check if its misspelled, it runs in constant time
+            (rather than in linear time, as that's what it takes to
+            traverse through an array). So converting the dictionary into
+            a map is beneficial because it can check if the word is misspelled
+            in constant time.
+         */
         for(int i = 0; i < dictionary.length; i++){
             sortedDict.put(dictionary[i], i);
         }
+        /*
+            The below function checks if its misspelled.
+            If it is, and if it isn't already in the misspelled words map,
+            (another fast way to check if it is already added to the misspelledwords map
+            because it checks in constant, not linear time).
+            then I add it to the misspelled words arraylist.
+         */
         for(int i = 0; i < text.length; i++){
             if ((!sortedDict.containsKey(text[i])) && (!misspelledWordsMap.containsKey(text[i]))) {
                 misspelledWordsMap.put(text[i],i);
@@ -45,8 +60,8 @@ public class SpellCheck {
         }
         String[] misspellArr = new String[misspelledWords.size()];
         /*
-        I got the below code from:
-        https://www.baeldung.com/java-iterate-set
+        Moves everything from the arraylist into the misspellarr array
+        and returns it.
          */
         int j = 0;
         for(String a : misspelledWords){

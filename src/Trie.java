@@ -64,12 +64,21 @@ public class Trie {
         Node currentNode = null;
         while(pNode != null){
             System.out.println(pNode.toString());
+            printMyChildren(pNode);
+        }
+    }
+
+    public void printMyChildren(Node pNode){
+        Node currentNode = null;
+        while(pNode != null){
             for(int i = 0; i < 26; i++){
                 currentNode = pNode.getNext(i);
                 if(currentNode != null){
                     System.out.println(currentNode.toString());
+                    printMyChildren(currentNode);
                 }
             }
+
         }
     }
 }

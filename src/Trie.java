@@ -25,9 +25,11 @@ public class Trie {
             if(i == (s.length() - 1)){
                 currentWord = true;
             }
-            newNode = new Node(s.charAt(i), currentWord, null);
-            pNode.setNext(newNode, charIndex);
-            pNode = newNode;
+            if(pNode.getNext(charIndex) == null){
+                newNode = new Node(s.charAt(i), currentWord, null);
+                pNode.setNext(newNode, charIndex);
+            }
+            pNode = pNode.getNext(charIndex);
         }
     }
     public boolean lookup(String s){

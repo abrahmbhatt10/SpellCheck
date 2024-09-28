@@ -70,15 +70,15 @@ public class Trie {
 
     public void printMyChildren(Node pNode){
         Node currentNode = null;
-        while(pNode != null){
-            for(int i = 0; i < 26; i++){
-                currentNode = pNode.getNext(i);
+        if(pNode == null){
+            return;
+        }
+        for(int i = 0; i < 26; i++){
+            currentNode = pNode.getNext(i);
                 if(currentNode != null){
                     System.out.println(currentNode.toString());
                     printMyChildren(currentNode);
                 }
             }
-
-        }
     }
 }

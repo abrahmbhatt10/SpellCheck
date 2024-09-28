@@ -51,12 +51,20 @@ public class Trie {
             }
             currentNode = pNode.getNext(charIndex);
             if(currentNode == null){
-                return false;
+                if(!pNode.isWord()){
+                    return false;
+                }
+                else{
+                    return true;
+                }
             }
             if((i == s.length() - 1) && (!currentNode.isWord())){
                 return false;
             }
             pNode = currentNode;
+            if((pNode == null) && (i != s.length() - 1)){
+                return false;
+            }
         }
         return true;
     }
@@ -73,7 +81,7 @@ public class Trie {
             //This is a punctuation mark in a word
             for(int i = 0; i < punctuation.length; i++){
                 if(currentChar == punctuation[i]){
-                    charIndex = 26 + i;
+                    charIndex = 25 + i;
                     break;
                 }
             }

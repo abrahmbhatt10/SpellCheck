@@ -15,7 +15,7 @@ public class SpellCheck {
     /**
      * checkWords finds all words in text that are not present in dictionary
      *
-     * @param text The list of all words in the text.
+     * @param text       The list of all words in the text.
      * @param dictionary The list of all accepted words.
      * @return String[] of all mispelled words in the order they appear in text. No duplicates.
      */
@@ -36,20 +36,21 @@ add to misspelled Trie
         Trie dictWords = new Trie();
         Trie misspelledWords = new Trie();
         ArrayList<String> misspelledList = new ArrayList<String>();
-        if((dictionary == null) || dictionary.length <= 0){
+        if ((dictionary == null) || dictionary.length <= 0) {
             return text;
         }
-        if((text == null) || text.length <= 0){
+        if ((text == null) || text.length <= 0) {
             return null;
         }
-        for(int i = 0; i < dictionary.length; i++){
+        for (int i = 0; i < dictionary.length; i++) {
             dictWords.insert(dictionary[i]);
         }
-        for(int i = 0; i < text.length; i++){
-            if(!dictWords.lookup(text[i]) && !(misspelledWords.lookup(text[i]))){
+        for (int i = 0; i < text.length; i++) {
+            if (!dictWords.lookup(text[i]) && !(misspelledWords.lookup(text[i]))) {
                 misspelledWords.insert(text[i]);
                 misspelledList.add(text[i]);
             }
         }
-
+        return (String[]) misspelledList.toArray();
+    }
 }

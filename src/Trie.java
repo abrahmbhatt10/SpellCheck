@@ -1,10 +1,12 @@
 public class Trie {
     public Node root;
     public Node last;
+    private char[] punctuation;
 
     public Trie() {
         this.root = new Node(' ', false, null);
         this.last = this.root;
+        this.punctuation = new char[]{'\'', ',', '.', '!', '?', ';'};
     }
 
     public void insert(String s){
@@ -19,7 +21,7 @@ public class Trie {
         for(int i = 0; i < s.length(); i++){
             currentChar = s.charAt(i);
             charIndex = getCharIndex(currentChar);
-            if((charIndex < 0) || (charIndex > 25)){
+            if((charIndex < 0) || (charIndex > 25 + punctuation.length)){
                 continue;
             }
             if(i == (s.length() - 1)){
@@ -43,7 +45,7 @@ public class Trie {
         int charIndex;
         for(int i = 0; i < s.length(); i++){
             charIndex = getCharIndex(s.charAt(i));
-            if(charIndex < 0 || charIndex > 25)
+            if(charIndex < 0 || charIndex > 25 + punctuation.length)
             {
                 return false;
             }
@@ -64,8 +66,17 @@ public class Trie {
         if(Character.isLowerCase(currentChar)){
             charIndex = currentChar - 'a';
         }
-        else{
+        else if(Character.isUpperCase(currentChar)){
             charIndex = currentChar - 'A';
+        }
+        else{
+            //This is a punctuation mark in a word
+            for(int i = 0; i < punctuation.length; i++){
+                if(currentChar == punctuation[i]){
+                    charIndex = 26 + i;
+                    break;
+                }
+            }
         }
         return charIndex;
     }
@@ -84,7 +95,7 @@ public class Trie {
         if(pNode == null){
             return;
         }
-        for(int i = 0; i < 26; i++){
+        for(int i = 0; i < 26 + punctuation.length; i++){
             currentNode = pNode.getNext(i);
                 if(currentNode != null){
                     System.out.println(currentNode.toString());

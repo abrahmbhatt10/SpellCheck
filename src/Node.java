@@ -5,18 +5,21 @@ public class Node {
     private boolean isWord;
     private Node[] next;
     private char nodeChar;
+    private char[] punctuation;
 
     public Node(char nodeChar, boolean isWord, Node[] next) {
         this.isWord = isWord;
         this.next = next;
-        this.next = new Node[26];
+        this.punctuation = new char[]{'\'', ',', '.', '!', '?', ';'};
+        this.next = new Node[26 + punctuation.length];
         this.nodeChar = nodeChar;
     }
 
     public Node() {
         this.isWord = false;
         this.next = null;
-        this.next = new Node[26];
+        this.punctuation = new char[]{'\'', ',', '.', '!', '?', ';'};
+        this.next = new Node[26 + punctuation.length];
         this.nodeChar = ' ';
     }
 

@@ -29,6 +29,11 @@ public class Trie {
                 newNode = new Node(s.charAt(i), currentWord, null);
                 pNode.setNext(newNode, charIndex);
             }
+            else {
+                if(i== (s.length()-1) && (!pNode.getNext(charIndex).isWord())){
+                    pNode.getNext(charIndex).setWord(true);
+                }
+            }
             pNode = pNode.getNext(charIndex);
         }
     }
@@ -38,6 +43,10 @@ public class Trie {
         int charIndex;
         for(int i = 0; i < s.length(); i++){
             charIndex = getCharIndex(s.charAt(i));
+            if(charIndex < 0 || charIndex > 25)
+            {
+                return false;
+            }
             currentNode = pNode.getNext(charIndex);
             if(currentNode == null){
                 return false;

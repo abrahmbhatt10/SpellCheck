@@ -33,5 +33,23 @@ for each word in text:
 add to misspelled Trie
 
          */
+        Trie dictWords = new Trie();
+        Trie misspelledWords = new Trie();
+        ArrayList<String> misspelledList = new ArrayList<String>();
+        if((dictionary == null) || dictionary.length <= 0){
+            return text;
+        }
+        if((text == null) || text.length <= 0){
+            return null;
+        }
+        for(int i = 0; i < dictionary.length; i++){
+            dictWords.insert(dictionary[i]);
+        }
+        for(int i = 0; i < text.length; i++){
+            if(!dictWords.lookup(text[i]) && !(misspelledWords.lookup(text[i]))){
+                misspelledWords.insert(text[i]);
+                misspelledList.add(text[i]);
+            }
+        }
 
 }

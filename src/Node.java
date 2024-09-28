@@ -47,7 +47,6 @@ public class Node {
     public String toString() {
         return "Node{" +
                 "isWord=" + isWord +
-                ", next=" + Arrays.toString(next) +
                 ", nodeChar=" + nodeChar +
                 '}';
     }

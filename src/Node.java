@@ -58,11 +58,11 @@ public class Node {
                 next.add(new Node((char)('a' + j), false));
             }
         }
-        if(Character.isLowerCase((char)currentChar)){
+        if((currentChar >= 97) && (currentChar <= 122)){
             charIndex = currentChar - 'a';
             return charIndex;
         }
-        if(Character.isUpperCase((char)currentChar)){
+        if((currentChar >= 65) && (currentChar <= 90)){
             charIndex = currentChar - 'A';
             return charIndex;
         }

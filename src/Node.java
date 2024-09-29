@@ -60,7 +60,8 @@ public class Node {
         }
         // This is for special characters
         Node pNode;
-        for(int i = 26; i < next.size(); i++){
+        int i;
+        for(i = 26; i < next.size(); i++){
             pNode = next.get(i);
             if(pNode == null){
                 next.set(i, new Node(currentChar,false));
@@ -70,7 +71,8 @@ public class Node {
                 return i;
             }
         }
-        return charIndex;
+        next.add(i, new Node(currentChar, false));
+        return i;
     }
 
     @Override

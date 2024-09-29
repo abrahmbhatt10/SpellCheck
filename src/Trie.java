@@ -4,7 +4,7 @@ public class Trie {
     private char[] punctuation;
 
     public Trie() {
-        this.root = new Node(' ', false, null);
+        this.root = new Node(' ', false);
         this.last = this.root;
         this.punctuation = new char[]{'\'', ',', '.', '!', '?', ';'};
     }
@@ -28,8 +28,8 @@ public class Trie {
                 currentWord = true;
             }
             if(pNode.getNext(charIndex) == null){
-                newNode = new Node(s.charAt(i), currentWord, null);
-                pNode.setNext(newNode, charIndex);
+                newNode = new Node(s.charAt(i), currentWord);
+                pNode.setNext(charIndex, newNode);
             }
             else {
                 if(i== (s.length()-1) && (!pNode.getNext(charIndex).isWord())){

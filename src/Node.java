@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.text.Normalizer;
 
 public class Node {
     //Instance Variables
     private boolean isWord;
-    private char nodeChar;
+    private int nodeChar;
     private ArrayList<Node> next;
 
-    public Node(char nodeChar, boolean isWord) {
+    public Node(int nodeChar, boolean isWord) {
         this.isWord = isWord;
         this.next = new ArrayList<Node>();
         this.nodeChar = nodeChar;
@@ -16,10 +17,10 @@ public class Node {
     public Node() {
         this.isWord = false;
         this.next = new ArrayList<Node>();
-        this.nodeChar = ' ';
+        this.nodeChar = (int)' ';
     }
 
-    public char getNodeChar() {
+    public int getNodeChar() {
         return nodeChar;
     }
 
@@ -35,25 +36,33 @@ public class Node {
     }
 
     public Node getNext(int index) {
+        if(index >= next.size()){
+            return null;
+        }
         return next.get(index);
     }
 
     public void setNext(int index, Node newNode) {
-        next.set(index, newNode);
+        if(index < 0){
+            next.add(newNode);
+        }
+        else{
+            next.set(index, newNode);
+        }
     }
 
-    public int getCharIndex(char currentChar){
+    public int getCharIndex(int currentChar, boolean insertFlag, boolean isWord){
         int charIndex = -1;
         if(next.size() < 26){
             for(int j = 0; j < 26; j++){
                 next.add(new Node((char)('a' + j), false));
             }
         }
-        if(Character.isLowerCase(currentChar)){
+        if(Character.isLowerCase((char)currentChar)){
             charIndex = currentChar - 'a';
             return charIndex;
         }
-        if(Character.isUpperCase(currentChar)){
+        if(Character.isUpperCase((char)currentChar)){
             charIndex = currentChar - 'A';
             return charIndex;
         }
@@ -62,16 +71,15 @@ public class Node {
         int i;
         for(i = 26; i < next.size(); i++){
             pNode = next.get(i);
-            if(pNode == null){
-                next.set(i, new Node(currentChar,false));
-                return i;
-            }
             if(pNode.getNodeChar() == currentChar){
                 return i;
             }
         }
-        next.add(i, new Node(currentChar, false));
-        return i;
+        if(insertFlag){
+            next.add(i, new Node(currentChar, isWord));
+            return i;
+        }
+        return -1;
     }
 
     @Override

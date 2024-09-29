@@ -10,18 +10,12 @@ public class Node {
     public Node(char nodeChar, boolean isWord) {
         this.isWord = isWord;
         this.next = new ArrayList<Node>();
-        for(int i = 0; i < 26; i++){
-            next.add(new Node());
-        }
         this.nodeChar = nodeChar;
     }
 
     public Node() {
         this.isWord = false;
         this.next = new ArrayList<Node>();
-        for(int i = 0; i < 26; i++){
-            next.add(new Node());
-        }
         this.nodeChar = ' ';
     }
 
@@ -50,6 +44,11 @@ public class Node {
 
     public int getCharIndex(char currentChar){
         int charIndex = -1;
+        if(next.size() < 26){
+            for(int j = 0; j < 26; j++){
+                next.add(new Node((char)('a' + j), false));
+            }
+        }
         if(Character.isLowerCase(currentChar)){
             charIndex = currentChar - 'a';
             return charIndex;

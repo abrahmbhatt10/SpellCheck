@@ -20,10 +20,7 @@ public class Trie {
         Character currentChar;
         for(int i = 0; i < s.length(); i++){
             currentChar = s.charAt(i);
-            charIndex = getCharIndex(currentChar);
-            if((charIndex < 0) || (charIndex > 25 + punctuation.length)){
-                continue;
-            }
+            charIndex = pNode.getCharIndex(currentChar);
             if(i == (s.length() - 1)){
                 currentWord = true;
             }
@@ -43,12 +40,8 @@ public class Trie {
         Node pNode = root;
         Node currentNode = null;
         int charIndex;
-        for(int i = 0; i < s.length(); i++){
-            charIndex = getCharIndex(s.charAt(i));
-            if(charIndex < 0 || charIndex > 25 + punctuation.length)
-            {
-                return false;
-            }
+        for(int i = 0; (i < s.length()) && (pNode != null); i++){
+            charIndex = pNode.getCharIndex(s.charAt(i));
             currentNode = pNode.getNext(charIndex);
             if(currentNode == null){
                 if(!pNode.isWord()){
@@ -67,26 +60,6 @@ public class Trie {
             }
         }
         return true;
-    }
-
-    public int getCharIndex(char currentChar){
-        int charIndex = -1;
-        if(Character.isLowerCase(currentChar)){
-            charIndex = currentChar - 'a';
-        }
-        else if(Character.isUpperCase(currentChar)){
-            charIndex = currentChar - 'A';
-        }
-        else{
-            //This is a punctuation mark in a word
-            for(int i = 0; i < punctuation.length; i++){
-                if(currentChar == punctuation[i]){
-                    charIndex = 25 + i;
-                    break;
-                }
-            }
-        }
-        return charIndex;
     }
 
     public void printTrie(){

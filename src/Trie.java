@@ -25,9 +25,6 @@ public class Trie {
         boolean currentWord = false;
         int charIndex = 0;
         int currentChar;
-        if(s.equals("personæ")){
-            System.out.println(s);
-        }
         for(int i = 0; (i < s.length()) && (pNode != null); i++){
             currentChar = s.codePointAt(i);
             if(i == s.length() - 1){

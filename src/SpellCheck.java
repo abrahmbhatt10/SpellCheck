@@ -51,9 +51,6 @@ add to misspelled Trie
                 misspelledList.add(text[i]);
             }
         }
-        for(int i = 0; i < misspelledList.size(); i++){
-            System.out.println(misspelledList.get(i));
-        }
         return misspelledList.toArray(new String[misspelledList.size()]);
     }
 }

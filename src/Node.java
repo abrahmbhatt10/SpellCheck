@@ -61,6 +61,9 @@ public class Node {
     public int getCharIndex(int currentChar, boolean insertFlag, boolean isWord){
         int charIndex = -1;
         if(next.size() < 26){
+            /*
+                By default, this creates array for a - z uppercase/lowercase alphabet.
+             */
             for(int j = 0; j < 26; j++){
                 next.add(new Node((char)('a' + j), false));
             }
@@ -76,7 +79,7 @@ public class Node {
             return charIndex;
         }
         /*
-            For special characters,
+            Special characters are added to the end of the arraylist at position 26 onwards.
          */
         Node pNode;
         int i;
@@ -86,6 +89,12 @@ public class Node {
                 return i;
             }
         }
+        /*
+            This is where the characters are inserted
+            only when called from the insert function.
+            When called from the lookup function, the insert flag is false.
+            When a character doesn't exist, it just returns -1.
+         */
         if(insertFlag){
             next.add(i, new Node(currentChar, isWord));
             return i;
@@ -93,6 +102,7 @@ public class Node {
         return -1;
     }
 
+    // ToString for debugging.
     @Override
     public String toString() {
         return "Node{" +

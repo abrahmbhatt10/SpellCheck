@@ -4,11 +4,17 @@ public class Trie {
     public Node root;
     public Node last;
 
+    // Default Constructor
     public Trie() {
         this.root = new Node(' ', false);
         this.last = this.root;
     }
 
+    /*
+        This function inserts words from the dictionary
+        to the dictionary trie and the misspelled words to the misspelled trie.
+        This function is based on the pseudocode from the class.
+     */
     public void insert(String s){
         if((s == null) || (s.length() <= 0)){
             return;
@@ -53,7 +59,17 @@ public class Trie {
             pNode = pNode1;
         }
     }
+
+    /*
+        This function looks up words from the trie
+        and returns true if the word exists and false if not.
+
+     */
     public boolean lookup(String s){
+        /*
+        I got the below code from:
+        https://stackoverflow.com/questions/69633201/unicode-normalization-forms-explanation-java
+         */
         String s2 = Normalizer.normalize(s, Normalizer.Form.NFC);
         s = s2;
         Node pNode = root;
@@ -83,6 +99,8 @@ public class Trie {
         return true;
     }
 
+    // Helps for debugging by printing out
+    // Each Node data
     public void printTrie(){
         Node pNode = root;
         Node currentNode = null;
@@ -92,6 +110,7 @@ public class Trie {
         }
     }
 
+    // Prints the nodes branches
     public void printMyChildren(Node pNode){
         Node currentNode = null;
         if(pNode == null){

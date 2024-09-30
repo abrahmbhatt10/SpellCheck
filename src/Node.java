@@ -8,18 +8,21 @@ public class Node {
     private int nodeChar;
     private ArrayList<Node> next;
 
+    // Constructor
     public Node(int nodeChar, boolean isWord) {
         this.isWord = isWord;
         this.next = new ArrayList<Node>();
         this.nodeChar = nodeChar;
     }
 
+    // Default constructor
     public Node() {
         this.isWord = false;
         this.next = new ArrayList<Node>();
         this.nodeChar = (int)' ';
     }
 
+    // Getters and setters
     public int getNodeChar() {
         return nodeChar;
     }
@@ -51,6 +54,10 @@ public class Node {
         }
     }
 
+    /*
+        This functions gets the char index
+        or the position of the char in the array
+     */
     public int getCharIndex(int currentChar, boolean insertFlag, boolean isWord){
         int charIndex = -1;
         if(next.size() < 26){
@@ -58,7 +65,9 @@ public class Node {
                 next.add(new Node((char)('a' + j), false));
             }
         }
+        // Checks if upper or lowercase
         if((currentChar >= 97) && (currentChar <= 122)){
+            // Figures out the position in the alphabet
             charIndex = currentChar - 'a';
             return charIndex;
         }
@@ -66,7 +75,9 @@ public class Node {
             charIndex = currentChar - 'A';
             return charIndex;
         }
-        // This is for special characters
+        /*
+            For special characters,
+         */
         Node pNode;
         int i;
         for(i = 26; i < next.size(); i++){

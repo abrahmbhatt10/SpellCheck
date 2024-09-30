@@ -21,6 +21,8 @@ public class SpellCheck {
      */
     public String[] checkWords(String[] text, String[] dictionary) {
         /*
+        Pseudocode taken from Mr. Blick's slides:
+
         Create a Trie for the dictionary
 For each word in the dictionary,
 	insert it into the Trie

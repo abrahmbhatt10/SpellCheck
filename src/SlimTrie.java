@@ -100,6 +100,16 @@ public class SlimTrie {
                 else{
                     pNode1 = pNode.getNext(0);
                 }
+                if(pNode1 == null){
+                    pNode1 = new SlimNode(s.charAt(i), currentWord);
+                }
+                else{
+                    pNode = pNode1;
+                    pNode1 = null;
+                }
+            }
+            if((pNode == null) && (pNode1 == null)){
+                pNode = new SlimNode(s.charAt(i), currentWord);
             }
         }
         return true;

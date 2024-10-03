@@ -69,6 +69,8 @@ public class SlimTrie {
         }
     }
     /*
+        node = node.next[word.charAt(i)];
+
         insert((node)root, (word)"cab", (index)0);
         (if statement) check for null nodes then create new nodes there
         create node before recursing

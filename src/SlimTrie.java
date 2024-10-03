@@ -62,6 +62,7 @@ public class SlimTrie {
             }
             if((pNode == null) && (pNode1 == null)){
                 pNode = new SlimNode(s.charAt(i), currentWord);
+                System.out.println(currentWord);
             }
         }
     }
@@ -69,7 +70,6 @@ public class SlimTrie {
     /*
         This function looks up words from the trie
         and returns true if the word exists and false if not.
-
      */
     public boolean lookup(String s){
         /*

@@ -86,6 +86,34 @@ public class SlimNode {
         return 2;
     }
 
+    public SlimNode getCharNextNode(int currentChar, boolean insertFlag, boolean isWord, SlimNode lastNode){
+        SlimNode pNode1 = null;
+        SlimNode pNode = lastNode;
+        if(pNode == null){
+            if(!insertFlag){
+                return null;
+            }
+            pNode = new SlimNode(currentChar, isWord);
+            return pNode;
+        }
+        while(pNode1 == null){
+            if(pNode.getNodeChar() == currentChar){
+                return pNode;
+            }
+            else if(pNode.getNodeChar() < currentChar){
+                pNode1 = pNode.getNext(2);
+            }
+            else{
+                pNode1 = pNode.getNext(0);
+            }
+            if(pNode1 != null){
+                pNode = pNode1;
+                pNode1 = null;
+            }
+        }
+        return pNode1;
+    }
+
     // ToString for debugging.
     @Override
     public String toString() {

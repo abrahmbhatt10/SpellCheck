@@ -100,10 +100,7 @@ public class SlimTrie {
                 else{
                     pNode1 = pNode.getNext(0);
                 }
-                if(pNode1 == null){
-                    pNode1 = new SlimNode(s.charAt(i), currentWord);
-                }
-                else{
+                if(pNode1 != null){
                     pNode = pNode1;
                     pNode1 = null;
                 }

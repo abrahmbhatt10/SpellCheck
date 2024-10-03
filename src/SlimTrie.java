@@ -84,8 +84,22 @@ public class SlimTrie {
         int charIndex;
         boolean currentWord;
         for(int i = 0; (i < s.length()) && (pNode != null); i++){
-            if(pNode1 == null){
-                return false;
+            if(i == s.length() - 1){
+                currentWord = true;
+            }
+            else{
+                currentWord = false;
+            }
+            while(pNode1 == null){
+                if(pNode.getNodeChar() == s.charAt(i)){
+                    pNode1 = pNode.getNext(1);
+                }
+                else if(pNode.getNodeChar() < s.charAt(i)){
+                    pNode1 = pNode.getNext(2);
+                }
+                else{
+                    pNode1 = pNode.getNext(0);
+                }
             }
         }
         return true;

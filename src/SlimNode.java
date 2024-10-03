@@ -2,12 +2,12 @@ public class SlimNode {
     //Instance Variables
     private boolean isWord;
     private int nodeChar;
-    private Node[] next;
+    private SlimNode[] next;
 
     // Constructor
     public SlimNode(int nodeChar, boolean isWord) {
         this.isWord = isWord;
-        this.next = new Node[3];
+        this.next = new SlimNode[3];
         for(int i = 0; i < next.length; i++){
             next[i] = null;
         }
@@ -17,7 +17,7 @@ public class SlimNode {
     // Default constructor
     public SlimNode() {
         this.isWord = false;
-        this.next = new Node[3];
+        this.next = new SlimNode[3];
         for(int i = 0; i < next.length; i++){
             next[i] = null;
         }
@@ -40,14 +40,14 @@ public class SlimNode {
         isWord = endWord;
     }
 
-    public Node getNext(int index) {
+    public SlimNode getNext(int index) {
         if(index >= next.length){
             return null;
         }
         return next[index];
     }
 
-    public void setNext(int index, Node newNode) {
+    public void setNext(int index, SlimNode newNode) {
         if((index < 0) || (index > (next.length - 1))){
             next[1] = newNode;
         }
@@ -67,7 +67,7 @@ public class SlimNode {
         }
         if((next[1] == null)){
             if(insertFlag){
-                next[1] = new Node(currentChar, isWord);
+                next[1] = new SlimNode(currentChar, isWord);
             }
             return 1;
         }
@@ -76,12 +76,12 @@ public class SlimNode {
         }
         if(next[1].getNodeChar() > currentChar){
             if((next[0] == null) && (insertFlag)){
-                next[0] = new Node(currentChar, isWord);
+                next[0] = new SlimNode(currentChar, isWord);
             }
             return 0;
         }
         if((next[2] == null) && (insertFlag)){
-            next[2] = new Node(currentChar, isWord);
+            next[2] = new SlimNode(currentChar, isWord);
         }
         return 2;
     }

@@ -12,6 +12,8 @@ public class SlimTrie {
         This function inserts words from the dictionary
         to the dictionary trie and the misspelled words to the misspelled trie.
         This function is based on the pseudocode from the class.
+
+
      */
     public void insert(String s){
         if((s == null) || (s.length() <= 0)){
@@ -66,6 +68,18 @@ public class SlimTrie {
             }
         }
     }
+    /*
+        insert((node)root, (word)"cab", (index)0);
+        (if statement) check for null nodes then create new nodes there
+        create node before recursing
+        Second insert function
+        If it goes left or right on the tree, don't increase index
+        However, if it goes down the tree, then increase it by 1.
+     */
+    public void insert(SlimNode node, String currentWord, int index){
+
+    }
+
 
     /*
         This function looks up words from the trie

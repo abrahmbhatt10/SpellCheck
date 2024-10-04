@@ -97,14 +97,16 @@ public class SlimNode {
             return pNode;
         }
         while(pNode != null){
-            if(pNode.getNodeChar() == currentChar){
-                return pNode;
-            }
-            else if(pNode.getNodeChar() < currentChar){
-                pNode1 = pNode.getNext(2);
-            }
-            else{
-                pNode1 = pNode.getNext(0);
+            pNode1 = pNode.getNext(1);
+            if(pNode1 != null) {
+                if(pNode1.getNodeChar() == currentChar){
+                    return pNode1;
+                }
+                else if (pNode1.getNodeChar() < currentChar) {
+                    pNode1 = pNode.getNext(2);
+                } else {
+                    pNode1 = pNode.getNext(0);
+                }
             }
             pNode = pNode1;
             pNode1 = null;

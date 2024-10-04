@@ -31,21 +31,22 @@ public class SlimTrie {
         boolean currentWord = false;
         int charIndex = 0;
         int currentChar;
-        for(int i = 0; (i < s.length()) && (pNode != null); i++){
+        if(pNode.getNodeChar() == ' '){
+            // This is the root node
+            pNode.setNodeChar(s.charAt(0));
+        }
+        for(int i = 1; (i < s.length()) && (pNode != null); i++){
             if(i == s.length() - 1){
                 currentWord = true;
             }
             else{
                 currentWord = false;
             }
-            if(pNode.getNodeChar() == ' '){
-                // This is the root node
-                pNode.setNodeChar(s.charAt(i));
-                pNode.setWord(currentWord);
-                continue;
-            }
-            pNode1 = pNode.getCharNextNode(pNode.getNodeChar(), true, currentWord, pNode);
+            pNode1 = pNode.getCharNextNode(s.charAt(i), true, currentWord, pNode);
             pNode = pNode1;
+        }
+        if(pNode != null){
+            pNode.setWord(true);
         }
     }
     /*
@@ -86,8 +87,11 @@ public class SlimTrie {
             else{
                 currentWord = false;
             }
-            pNode1 = pNode.getCharNextNode(pNode.getNodeChar(), false, currentWord, pNode);
+            pNode1 = pNode.getCharNextNode(s.charAt(i), false, currentWord, pNode);
             if((pNode1 == null) && (currentWord == false)){
+                return false;
+            }
+            if((currentWord) && (pNode1 != null) && (!pNode1.isWord())){
                 return false;
             }
             pNode = pNode1;

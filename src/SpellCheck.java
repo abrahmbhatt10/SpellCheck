@@ -78,6 +78,7 @@ add to misspelled Trie
                 misspelledList.add(text[i]);
             }
         }
+        //System.out.println(misspelledList);
         return misspelledList.toArray(new String[misspelledList.size()]);
     }
 }

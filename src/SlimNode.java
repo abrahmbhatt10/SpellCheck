@@ -96,7 +96,7 @@ public class SlimNode {
             pNode = new SlimNode(currentChar, isWord);
             return pNode;
         }
-        while(pNode1 == null){
+        while(pNode != null){
             if(pNode.getNodeChar() == currentChar){
                 return pNode;
             }
@@ -106,12 +106,13 @@ public class SlimNode {
             else{
                 pNode1 = pNode.getNext(0);
             }
-            if(pNode1 != null){
-                pNode = pNode1;
-                pNode1 = null;
-            }
+            pNode = pNode1;
+            pNode1 = null;
         }
-        return pNode1;
+        if((pNode == null) && (insertFlag)){
+            pNode = new SlimNode(currentChar, isWord);
+        }
+        return pNode;
     }
 
     // ToString for debugging.

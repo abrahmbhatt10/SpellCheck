@@ -60,6 +60,11 @@ add to misspelled Trie
         return misspelledList.toArray(new String[misspelledList.size()]);
     }
          */
+
+        /*
+        The below code is a replica of the code above but adjusted so that it can
+        test out the SlimTrie (TST) class instead of the trie.
+         */
         SlimTrie dictWords = new SlimTrie();
         SlimTrie misspelledWords = new SlimTrie();
         ArrayList<String> misspelledList = new ArrayList<String>();

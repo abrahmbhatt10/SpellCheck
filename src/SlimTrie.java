@@ -30,7 +30,9 @@ public class SlimTrie {
         SlimNode parentNode = root;
         int currentIndex = 1;
         boolean matchExists = false;
-
+        /*
+            Iterate through all the alphabets of the word to be inserted.
+         */
         for(int i=0; i< s.length(); i++)
         {
             matchExists = false;
@@ -129,6 +131,12 @@ public class SlimTrie {
         return true;
      }
 
+     /*
+        Once the location that I need to insert in the trie is decided, it inserts the rest of the String.
+        If I have to insert a new word, such as caterpillar, I will go through the root, find the c as cat,
+        then once I find a null node, I have to insert an e position, and I don't have to continue checking. I
+        could simply continue to add each letter of the rest of the word to each remaining null node.
+      */
      public void insertRemaining(String s, int i, SlimNode pNode, SlimNode parentNode)
      {
          boolean lastLetter = false;
@@ -173,6 +181,10 @@ public class SlimTrie {
         }
     }
 
+    /*
+        This function finds the node that matches the character.
+        If the character is not found, it returns a null.
+     */
     public SlimNode getCurrentNode(int currentChar, SlimNode rootNode)
     {
         SlimNode pNode = rootNode;

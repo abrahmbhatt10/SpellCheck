@@ -44,28 +44,8 @@ public class SlimTrie {
                 pNode.setWord(currentWord);
                 continue;
             }
-            while((pNode1 == null) && (pNode != null)){
-                if(pNode.getNodeChar() == s.charAt(i)){
-                    pNode1 = pNode.getNext(1);
-                }
-                else if(pNode.getNodeChar() < s.charAt(i)){
-                    pNode1 = pNode.getNext(2);
-                }
-                else{
-                    pNode1 = pNode.getNext(0);
-                }
-                if(pNode1 == null){
-                    pNode1 = new SlimNode(s.charAt(i), currentWord);
-                }
-                else{
-                    pNode = pNode1;
-                    pNode1 = null;
-                }
-            }
-            if((pNode == null) && (pNode1 == null)){
-                pNode = new SlimNode(s.charAt(i), currentWord);
-                System.out.println(currentWord);
-            }
+            pNode1 = pNode.getCharNextNode(pNode.getNodeChar(), true, currentWord, pNode);
+            pNode = pNode1;
         }
     }
     /*
